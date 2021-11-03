@@ -1,4 +1,4 @@
-# Virtual Donkey Racing2021_June
+# Virtual Donkey Racing2021_November
 
 # Repository Introduction
 This repository includes Donkey v4.2 driving data, trained models, and Donkey configuration data for participation in the Virtual DonkeyCar Race racing in June 2021.  
