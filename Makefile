@@ -18,6 +18,7 @@ TRM_ALL = $(TRM_EXAMPLE)
 
 #Mask
 MSK_EXAMPLE = data/Example_data.mask_done
+MSK_DATA1 = data/data1.mask_done
 MSK_ALL = $(MSK_EXAMPLE)
 
 #Call Data
@@ -48,20 +49,30 @@ record10:
 	$(PYTHON) manage.py drive --js --myconfig=cfgs/myconfig_10Hz.py
 
 trim: $(TRM_ALL)
+# trim_data1: $(TRIM_DATA1)
 mask: $(MSK_ALL)
+mask_data1: $(MSK_DATA1)
 trim_mask: $(TRIM_MASK_ALL)
 
 test_train: models/test.h5
 	make models/test.h5
+linear_train: models/kusa_linear.h5
 
 # Create Model
 # DATAには整形(trim, mask)したデータを入れる。整形しないデータを使う場合はSAVE_DATAから呼び出す。
 models/test.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
+models/kusa_linear.h5: $(SAVE_DATA)$(DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
+
+
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+
+kusa_linear_run:
+	$(PYTHON) manage.py drive --model=save_model/models/kusa_linear.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 ########################################################################################################################
 
 ## SAPHIX RULE APPLY AREA ##############################################################################################
