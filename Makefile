@@ -14,6 +14,7 @@ TRIM_MASK_ALL = $(TRIM_MASK)
 
 #Trim
 TRM_EXAMPLE = data/Example_data.trim_done
+TRM_SUGAYA = data/data13_trimed.trim_done
 TRM_ALL = $(TRM_EXAMPLE)
 
 #Mask
