@@ -19,11 +19,14 @@ TRM_ALL = $(TRM_EXAMPLE)
 #Mask
 MSK_EXAMPLE = data/Example_data.mask_done
 MSK_DATA1 = data/data1.mask_done
+MSK_DATA2 = data/data2.mask_done
+MSK_DATA3 = data/data3.mask_done
 MSK_ALL = $(MSK_EXAMPLE)
 
 #Call Data
 SAVE_DATA = $(shell find save_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 DATA = $(shell find data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
+KUSA_LINEAR1_DATA = $(shell find save_data/kusa_linear1_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 ##################################################################################################################
 
 ## Command Area ##################################################################################################
@@ -52,11 +55,15 @@ trim: $(TRM_ALL)
 # trim_data1: $(TRIM_DATA1)
 mask: $(MSK_ALL)
 mask_data1: $(MSK_DATA1)
+mask_data2: $(MSK_DATA2)
+mask_data3: $(MSK_DATA3)
 trim_mask: $(TRIM_MASK_ALL)
 
 test_train: models/test.h5
 	make models/test.h5
-linear_train: models/kusa_linear.h5
+kusa_linear_train: models/kusa_linear.h5
+kusa_linear_stable1_train: models/kusa_linear_stable1.h5
+
 
 # Create Model
 # DATAには整形(trim, mask)したデータを入れる。整形しないデータを使う場合はSAVE_DATAから呼び出す。
@@ -66,6 +73,8 @@ models/test.h5: $(SAVE_DATA)$(DATA)
 models/kusa_linear.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
+models/kusa_linear_stable1.h5: $(KUSA_LINEAR1_DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
 # Autonomous Driving using .h5 File
 test_run:
@@ -73,6 +82,9 @@ test_run:
 
 kusa_linear_run:
 	$(PYTHON) manage.py drive --model=save_model/models/kusa_linear.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+
+kusa_linear_stable1_run:
+	$(PYTHON) manage.py drive --model=save_model/models/kusa_linear_stable1.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 ########################################################################################################################
 
 ## SAPHIX RULE APPLY AREA ##############################################################################################
