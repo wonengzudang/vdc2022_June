@@ -35,5 +35,6 @@ RUN . /opt/conda/etc/profile.d/conda.sh && \
 WORKDIR /root/projects/gym-donkeycar
 RUN pip install -e .[gym-donkeycar]
 
-COPY ./Team_Aizu_racer  /root/Team_aizu_racer
-WORKDIR /root/Team_aizu_racer
+COPY ./Team_ahoy_racer  /root/Team_ahoy_racer
+RUN echo "conda activate donkey" >> ~/.bashrc
+WORKDIR /root/Team_ahoy_racer

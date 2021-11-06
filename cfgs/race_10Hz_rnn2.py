@@ -32,7 +32,6 @@ DONKEY_SIM_PATH = "remote"
 SIM_HOST = "donkey-sim.roboticist.dev"
 
 DONKEY_GYM_ENV_NAME = "donkey-circuit-launch-track-v0" 
-GYM_CONF = { "body_style" : "donkey", "body_rgb" : (230, 0, 50), "car_name" : "hirohkau_Ahoy!", "font_size" : 18} # body style(donkey|bare|car01) body rgb 0-255
 
 GYM_CONF["racer_name"] = "hirohaku"
 GYM_CONF["country"] = "JP"
@@ -42,7 +41,8 @@ SIM_ARTIFICIAL_LATENCY = 0
 
 #WEB CONTROL
 WEB_CONTROL_PORT = 8887 
-WEB_INIT_MODE = "user"   # or user
+GYM_CONF = { "body_style" : "donkey", "body_rgb" : (230, 0, 50), "car_name" : "Ahoy!", "font_size" : 18} # body style(donkey|bare|car01) body rgb 0-255
+
 
 #TRAINING
 DEFAULT_AI_FRAMEWORK = 'tensorflow'

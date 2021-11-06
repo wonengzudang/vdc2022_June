@@ -32,7 +32,7 @@ DONKEY_SIM_PATH = "./DonkeySimLinux/donkey_sim.x86_64"
 SIM_HOST = "localhost"
 
 DONKEY_GYM_ENV_NAME = "donkey-circuit-launch-track-v0" 
-GYM_CONF = { "body_style" : "donkey", "body_rgb" : (92, 92, 240), "car_name" : "hirohkau_Ahoy!", "font_size" : 18} # body style(donkey|bare|car01) body rgb 0-255
+GYM_CONF = { "body_style" : "donkey", "body_rgb" : (230, 0, 50), "car_name" : "Ahoy!", "font_size" : 18} # body style(donkey|bare|car01) body rgb 0-255
 
 GYM_CONF["racer_name"] = "hirohkau_Ahoy!"
 GYM_CONF["country"] = "JP"
