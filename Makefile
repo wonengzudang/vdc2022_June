@@ -19,11 +19,15 @@ TRM_ALL = $(TRM_EXAMPLE)
 
 #Mask
 MSK_EXAMPLE = data/Example_data.mask_done
+SGY = data/sgy_data1.mask_done data/sgy_data2.mask_done data/sgy_data3.mask_done data/sgy_data4.mask_done data/sgy_data5.mask_done data/sgy_data6.mask_done data/sgy_data7.mask_done data/sgy_data8.mask_done data/sgy_data9.mask_done data/sgy_data10.mask_done
+SGY_MSK = $(SGY)
 MSK_ALL = $(MSK_EXAMPLE)
 
 #Call Data
 SAVE_DATA = $(shell find save_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 DATA = $(shell find data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
+SGY_DATA = $(shell find save_data/sgy_data* -type d | grep -v "images" | tr '\n' ' ')
+
 ##################################################################################################################
 
 ## Command Area ##################################################################################################
@@ -50,6 +54,7 @@ record10:
 
 trim: $(TRM_ALL)
 mask: $(MSK_ALL)
+mask_sgy: $(SGY_MSK)
 trim_mask: $(TRIM_MASK_ALL)
 
 test_train: models/test.h5
@@ -59,6 +64,12 @@ test_train: models/test.h5
 # DATAには整形(trim, mask)したデータを入れる。整形しないデータを使う場合はSAVE_DATAから呼び出す。
 models/test.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
+
+models/sgy_model.h5: $(SGY_DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
+
+models/sgy_model2.h5: $(SGY_DATA)$(DATA)
+	        TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
 # Autonomous Driving using .h5 File
 test_run:
