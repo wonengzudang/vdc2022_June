@@ -24,7 +24,7 @@ MSK_EXAMPLE = data/Example_data.mask_done
 MSK_DATA1 = data/data1.mask_done
 MSK_DATA2 = data/data2.mask_done
 MSK_DATA3 = data/data3.mask_done
-SGY = data/sgy_data1.mask_done data/sgy_data2.mask_done data/sgy_data3.mask_done data/sgy_data4.mask_done data/sgy_data5.mask_done data/sgy_data6.mask_done data/sgy_data7.mask_done data/sgy_data8.mask_done data/sgy_data9.mask_done data/sgy_data10.mask_done
+SGY = data/sgy_data1.mask_done data/sgy_data2.mask_done data/sgy_data3.mask_done data/sgy_data4.mask_done data/sgy_data5.mask_done data/sgy_data6.mask_done data/sgy_data7.mask_done data/sgy_data8.mask_done data/sgy_data9.mask_done data/sgy_data10.mask_done data/sgy_data11.mask_done data/sgy_data12.mask_done data/sgy_data13.mask_done data/sgy_data14.mask_done data/sgy_data15.mask_done data/sgy_data16.mask_done data/sgy_data17.mask_done data/sgy_data18.mask_done data/sgy_data19.mask_done data/sgy_data20.mask_done
 SGY_MSK = $(SGY)
 MSK_ALL = $(MSK_EXAMPLE)
 
