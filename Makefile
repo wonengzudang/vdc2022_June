@@ -14,6 +14,7 @@ TRIM_MASK_ALL = $(TRIM_MASK)
 
 #Trim
 TRM_EXAMPLE = data/Example_data.trim_done
+TRM_DATA1 = data/data1.trim_done
 TRM_ALL = $(TRM_EXAMPLE)
 
 #Mask
@@ -29,8 +30,8 @@ DATA = $(shell find data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' '
 KUSA_LINEAR1_DATA = $(shell find save_data/kusa_linear1_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 KUSA_LINEAR2_DATA = $(shell find save_data/kusa_linear2_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 KUSA_LINEAR3_DATA = $(shell find save_data/kusa_linear3_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
-
 KUSA_LINEAR4_DATA = $(shell find save_data/kusa_linear4_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
+KUSA_LINEAR5_DATA = $(shell find save_data/kusa_linear5_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 
 ##################################################################################################################
 
@@ -57,7 +58,7 @@ record10:
 	$(PYTHON) manage.py drive --js --myconfig=cfgs/myconfig_10Hz.py
 
 trim: $(TRM_ALL)
-# trim_data1: $(TRIM_DATA1)
+trim_data1: $(TRM_DATA1)
 mask: $(MSK_ALL)
 mask_data1: $(MSK_DATA1)
 mask_data2: $(MSK_DATA2)
@@ -66,11 +67,11 @@ trim_mask: $(TRIM_MASK_ALL)
 
 test_train: models/test.h5
 	make models/test.h5
-kusa_linear_train: models/kusa_linear.h5
 kusa_linear_stable1_train: models/kusa_linear_stable1.h5
 kusa_linear_stable2_train: models/kusa_linear_stable2.h5
 kusa_linear_stable3_train: models/kusa_linear_stable3.h5
 kusa_linear_stable4_train: models/kusa_linear_stable4.h5
+kusa_linear_stable5_train: models/kusa_linear_stable5.h5
 
 # Create Model
 # DATAには整形(trim, mask)したデータを入れる。整形しないデータを使う場合はSAVE_DATAから呼び出す。
@@ -89,6 +90,9 @@ models/kusa_linear_stable3.h5: $(KUSA_LINEAR3_DATA)
 models/kusa_linear_stable4.h5: $(KUSA_LINEAR4_DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
+models/kusa_linear_stable5.h5: $(KUSA_LINEAR5_DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
+
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
@@ -105,6 +109,8 @@ kusa_linear_stable3_run:
 kusa_linear_stable4_run:
 	$(PYTHON) manage.py drive --model=save_model/models/kusa_linear_stable4.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
+kusa_linear_stable5_run:
+	$(PYTHON) manage.py drive --model=save_model/models/kusa_linear_stable5.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
 ###############################################################################
 #########################################
