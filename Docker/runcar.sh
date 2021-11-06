@@ -1,4 +1,5 @@
 #!/bin/bash
+# 不要な気がする
 # run pln model using the docker gpu image (adapted from Toni's script)
 
 #cmd_line="python3 /root/myrace/manage.py drive --model=/root/myrace/models/mymodel.h5"
