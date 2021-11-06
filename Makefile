@@ -94,7 +94,12 @@ models/sgy_model.h5: $(SGY_DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
 models/sgy_model2.h5: $(SGY_DATA)$(DATA)
-	        TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
+
+models/sgy_model3.h5: $(SGY_DATA)$(DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
+
+
 
 # Autonomous Driving using .h5 File
 test_run:
@@ -108,6 +113,45 @@ kusa_linear_stable4_run:
 
 kusa_linear_stable5_run:
 	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable5.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+
+# connecting race server 10Hz
+kusa_stable3_remote:
+	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable3.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
+
+kusa_stable4_remote:
+	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable4.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
+
+kusa_stable5_remote:
+	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable5.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
+
+sgy1_remote:
+	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
+
+sgy2_remote:
+	$(PYTHON) manage.py drive --model=save_model/sgy2_model.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
+
+sgy3_remote:
+	$(PYTHON) manage.py drive --model=save_model/sgy3_model.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
+
+# connecting race server 50Hz
+kusa_stable3_remote50:
+	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable3.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
+
+kusa_stable4_remote50:
+	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable4.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
+
+kusa_stable5_remote50:
+	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable5.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
+
+sgy1_remote50:
+	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
+
+sgy2_remote50:
+	$(PYTHON) manage.py drive --model=save_model/sgy2_model.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
+
+sgy3_remote50:
+	$(PYTHON) manage.py drive --model=save_model/sgy3_model.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
+
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
