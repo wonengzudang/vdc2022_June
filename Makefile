@@ -30,8 +30,6 @@ MSK_ALL = $(MSK_EXAMPLE)
 #Call Data
 SAVE_DATA = $(shell find save_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 DATA = $(shell find data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
-KUSA_LINEAR1_DATA = $(shell find save_data/kusa_linear1_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
-KUSA_LINEAR2_DATA = $(shell find save_data/kusa_linear2_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 KUSA_LINEAR3_DATA = $(shell find save_data/kusa_linear3_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 KUSA_LINEAR4_DATA = $(shell find save_data/kusa_linear4_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 KUSA_LINEAR5_DATA = $(shell find save_data/kusa_linear5_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
@@ -72,8 +70,6 @@ trim_mask: $(TRIM_MASK_ALL)
 
 test_train: models/test.h5
 	make models/test.h5
-kusa_linear_stable1_train: models/kusa_linear_stable1.h5
-kusa_linear_stable2_train: models/kusa_linear_stable2.h5
 kusa_linear_stable3_train: models/kusa_linear_stable3.h5
 kusa_linear_stable4_train: models/kusa_linear_stable4.h5
 kusa_linear_stable5_train: models/kusa_linear_stable5.h5
@@ -83,12 +79,6 @@ kusa_linear_stable5_train: models/kusa_linear_stable5.h5
 models/test.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
-
-models/kusa_linear_stable1.h5: $(KUSA_LINEAR1_DATA)
-	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
-
-models/kusa_linear_stable2.h5: $(KUSA_LINEAR2_DATA)
-	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
 models/kusa_linear_stable3.h5: $(KUSA_LINEAR3_DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
@@ -109,20 +99,14 @@ models/sgy_model2.h5: $(SGY_DATA)$(DATA)
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
-kusa_linear_stable1_run:
-	$(PYTHON) manage.py drive --model=save_model/models/kusa_linear_stable1.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
-
-kusa_linear_stable2_run:
-	$(PYTHON) manage.py drive --model=save_model/models/kusa_linear_stable2.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
-
 kusa_linear_stable3_run:
-	$(PYTHON) manage.py drive --model=save_model/models/kusa_linear_stable3.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable3.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
 kusa_linear_stable4_run:
-	$(PYTHON) manage.py drive --model=save_model/models/kusa_linear_stable4.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable4.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
 kusa_linear_stable5_run:
-	$(PYTHON) manage.py drive --model=save_model/models/kusa_linear_stable5.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable5.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
 ###############################################################################
 #########################################
