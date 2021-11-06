@@ -130,6 +130,6 @@ data/%.trim_done: save_data/%.trim
 data/%.mask_done: save_data/%
 	$(PYTHON) scripts/image_mask.py --input=$< --output=$@
 	
-#sgy_model.h5 : data1 ~ data20
-#sgy_model2.h5 : data1 ~ data20, masked_data1 ~ masked_data10
+
+
 #####################################################################################################################
