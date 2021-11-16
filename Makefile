@@ -128,10 +128,10 @@ sgy1_remote:
 	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
 
 sgy2_remote:
-	$(PYTHON) manage.py drive --model=save_model/sgy2_model.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
+	$(PYTHON) manage.py drive --model=save_model/sgy_model2.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
 
 sgy3_remote:
-	$(PYTHON) manage.py drive --model=save_model/sgy3_model.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
+	$(PYTHON) manage.py drive --model=save_model/sgy_model3.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
 
 # connecting race server 50Hz
 kusa_stable3_remote50:
@@ -147,10 +147,10 @@ sgy1_remote50:
 	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
 
 sgy2_remote50:
-	$(PYTHON) manage.py drive --model=save_model/sgy2_model.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
+	$(PYTHON) manage.py drive --model=save_model/sgy_model2.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
 
 sgy3_remote50:
-	$(PYTHON) manage.py drive --model=save_model/sgy3_model.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
+	$(PYTHON) manage.py drive --model=save_model/sgy_model3.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
 
 
 ###############################################################################
