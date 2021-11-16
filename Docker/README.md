@@ -10,16 +10,16 @@ and the Donkeycar Discord for more details.
 ## Step 1. copy the necessary files to Team_ahoy_racer
 The _Team_ahoy_racer_ directory is a directory that is required when creating a DockerImage.  
 The files that need to be copied are as follows.  
-- `cfgs`: Our original config file
-- `save_model`: Our trained models
-- Empty `models`: Needed when starting the automatic driving
-- Empty `data`: Needed when starting the automatic driving
-- `config.py`
-- `manage.py`
-- `Makefile`: Use the *make* command to start automatic driving
+- `cfgs`: Our original config file  
+- `save_model`: Our trained models  
+- Empty `models`: Needed when starting the automatic driving  
+- Empty `data`: Needed when starting the automatic driving  
+- `config.py`  
+- `manage.py`  
+- `Makefile`: Use the *make* command to start automatic driving  
 
 ##Step 2. Start image build.
-``` sh . /img_build.sh ````  
+``` sh . /img_build.sh ```  
 to start Docker's Image build.  
 It will take 1.5 hours to build.
 
@@ -103,3 +103,59 @@ DonkeyCar主催者へDockerコンテナ作成の依頼をしてください。
 依頼する時に、あなたのsshkeyの公開鍵とDockerHubにアップロードしたリポジトリ名を準備するといいでしょう。  
 また、仕組みを理解するために、[こちらのREADME](https://github.com/altexdim/donkeycar-race)
 を読むことをおすすめします。
+
+
+# Docker目录说明
+此目录是我们团队用于 2021 年 11 月虚拟DonkeyCar比赛的示例。  
+下面介绍我们如何使用它。   
+在靠近比赛服务器的服务器上使用 Docker 容器允许比赛参与者通过低延迟网络与比赛服务器进行连接。   
+该方法由[@Heavy02011](https://github.com/Heavy02011)、[@altexdim](https://github.com/altexdim)等DonkeyCar组织者建立。 谢谢！   
+更多信息请访问  
+https://github.com/connected-autonomous-mobility/diyrobocar_docker_agent_pln
+,  
+https://github.com/altexdim/donkeycar-race
+和 Donkeycar Discord 了解更多详情。  
+
+## Step 1. 复制必要的文件到Team_ahoy_racer
+Team_ahoy_racer 目录是创建 Docker Image 时需要的目录。 
+需要复制的文件如下。 　　
+- `cfgs` 目录：我们的原始配置文件　　
+- `save_model`目录：训练好的模型　　
+- 空的`models`目录：自动驾驶开始时需要　　
+- 空的`data`目录：自动驾驶开始时需要　　
+- `config.py`  
+- `manage.py`  
+- `Makefile`：使用make命令启动自动驾驶运行 
+
+## Step 2. 开始镜像构建
+``` sh . /img_build.sh ```  
+开始Docker的镜像构建。  
+构建需要1.5个小时。
+
+## Step 3. 检查构建的镜像
+检查步骤 1 的内容是否包含在构建的镜像中。  
+``` docker run --name "TEAM_ahoy_racer" -it yourname/race2021_nov:0.1 /bin/bash ```  
+启动Docker容器并检查内容。  
+
+## Step 4. 上传镜像到DockerHub
+将映像上传到 DockerHub，并使其可在部署 Docker 容器的服务器上下载。  
+使用 Docker Hub 需要注册会员。  
+https://hub.docker.com/  
+请注册成为会员。  
+
+上传到 DockerHub  
+``` docker tag yourname/race2021_nov:0.1 <NEED MODIFY!> DockerHub_UserName/RipositoryName:tagname ```  
+``` docker push <NEED MODIFY!> DockerHub_UserName/RipositoryName:tagname ```  
+
+## Step 5. 创建 ssh 密钥 
+创建一个ssh密钥。  
+ssh 密钥的创建请看以下的说明。  
+
+[请看这里](https://github.com/altexdim/donkeycar-race#step-by-step-guide-for-a-participant-to-set-everything-up-before-the-race)  
+
+``` ssh-keygen -t ed25519 -C "your_email@example.com" -f ~/.ssh/donkeysim_race ```  
+
+## Step 6. 联系 DonkeyCar 组织者  
+请 DonkeyCar 组织者创建一个 Docker 容器。  
+最好在发出请求时准备好 ssh 公钥和上传到 DockerHub 的存储库名称。  
+另外，要了解它是如何工作的，请读一下 [README](https://github.com/altexdim/donkeycar-race)  
