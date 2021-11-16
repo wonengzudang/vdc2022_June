@@ -1,7 +1,7 @@
 # Virtual Donkey Racing2021_November
 
 # Repository Introduction
-This repository includes Donkey v4.2 driving data, trained models, and Donkey configuration data for participation in the Virtual DonkeyCar Race racing in June 2021.  
+This repository includes Donkey v4.2 driving data, trained models, and Donkey configuration data for participation in the Virtual DonkeyCar Race racing in November 2021.  
 This repository refers to [hogenimushi/vdc2020_race03](https://github.com/hogenimushi/vdc2020_race03).
 
 ## Preparation
@@ -48,6 +48,7 @@ make test_run
 See the Makefile.
 
 ## Description of each directory and file.
+- ```Docker```: It is used to build Docker images, which help deploy containers near a race server. Please see the README in the _Docker_ directory for more information.
 - ```cfgs```: Contains the configuration data files for Donkey. Donkey's configuration data includes car body settings and machine learning settings.
 - ```data```: This directory contains the simulator's recorded driving data. If you want to share your data, move it to _save_data_.
 - ```models```: The directory where models will be output after training. Move models to _save_model_ if you want to share them.
@@ -60,7 +61,7 @@ See the Makefile.
 - ```.gitignore```: This allows you to specify files and directories not to be pushed to the repository.　　
 
 # リポジトリ紹介
-このリポジトリは2021年6月のVirtual DonkeyCar Race racingに参加するためにDonkey v4.2 の走行データ、学習済みモデル、Donkeyのコンフィグデータを共有します。
+このリポジトリは2021年11月のVirtual DonkeyCar Race racingに参加するためにDonkey v4.2 の走行データ、学習済みモデル、Donkeyのコンフィグデータを共有します。
 このリポジトリは[hogenimushi/vdc2020_race03](https://github.com/hogenimushi/vdc2020_race03) を参考にして作っています。
 
 ## 準備
@@ -108,6 +109,7 @@ make test_run
 Makefileをご覧ください。
 
 ## 各ディレクトリとファイルの説明
+- ```Docker```: Dockerイメージをビルドするために使われます。Dockerイメージはレースサーバ近くでコンテナを展開するときに役立ちます。詳しくは_Docker_ディレクトリ内のREADMEをご覧ください。
 - ```cfgs```: Donkeyのコンフィグデータが入っています。コンフィグデータとは、車体設定や、機械学習時の設定などが書いてあります。
 - ```data```: シミュレータでの走行データが書き込まれます。共有したい走行データは*save_data*へ移動しましょう。
 - ```models```: 学習後にモデルが出力されるディレクトリです。共有したいモデルは*save_model*へ移動しましょう。
@@ -120,7 +122,7 @@ Makefileをご覧ください。
 - ```.gitignore```: リポジトリにpushしないファイルやディレクトリを指定できます。
 
 # 存储库介绍
-该存储库共享Donkey v4.2驾驶数据、训练模型和Donkey配置数据，以参加2021年6月的Virtual DonkeyCar Race比赛。  
+该存储库共享Donkey v4.2驾驶数据、训练模型和Donkey配置数据，以参加2021年11月的Virtual DonkeyCar Race比赛。  
 这个存储库是通过参考[hogenimushi/vdc2020_race03](https://github.com/hogenimushi/vdc2020_race03)创建的。  
 
 ## 准备
@@ -169,13 +171,14 @@ make test_run
 请看Makefile
 
 ## 每个目录和文件的说明
-```cfgs```： 包含 Donkey 配置数据。配置数据描述了车身设置和机器学习设置。  
-```data```： 写入模拟器中的驾驶数据。将要共享的驾驶数据移动到 *save_data*。  
-```models```： 训练后模型输出的目录。将要共享的模型移动到 *save_model*。  
-```save_data```： 与大家分享Donkey的驾驶数据。  
-```save_model```： 与大家分享 Donkey 训练好的模型。  
-```Makefile```： 主要目的是重现训练好的模型。具体来说，描述用于训练模型的数据。您还可以使用自己的命令调用长命令。  
-```config.py```： 包含 Donkey 的配置数据。您不需要编辑 config.py，因为您可以从 *cfgs* 覆盖它。  
-```manage.py```： 管理 Donkey 的训练和驾驶模型。  
-```train.py```： 接收训练期间指定的参数。  
-```.gitignore```： 您可以指定将不会推送到存储库的文件和目录。  
+- ```Docker```: 它被用来构建Docker镜像，这有助于在竞赛服务器附近部署容器。请参阅 _Docker_ 目录中的README以了解更多信息。
+- ```cfgs```： 包含 Donkey 配置数据。配置数据描述了车身设置和机器学习设置。  
+- ```data```： 写入模拟器中的驾驶数据。将要共享的驾驶数据移动到 *save_data*。  
+- ```models```： 训练后模型输出的目录。将要共享的模型移动到 *save_model*。  
+- ```save_data```： 与大家分享Donkey的驾驶数据。  
+- ```save_model```： 与大家分享 Donkey 训练好的模型。  
+- ```Makefile```： 主要目的是重现训练好的模型。具体来说，描述用于训练模型的数据。您还可以使用自己的命令调用长命令。  
+- ```config.py```： 包含 Donkey 的配置数据。您不需要编辑 config.py，因为您可以从 *cfgs* 覆盖它。  
+- ```manage.py```： 管理 Donkey 的训练和驾驶模型。  
+- ```train.py```： 接收训练期间指定的参数。  
+- ```.gitignore```： 您可以指定将不会推送到存储库的文件和目录。  

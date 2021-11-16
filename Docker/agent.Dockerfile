@@ -33,7 +33,9 @@ RUN . /opt/conda/etc/profile.d/conda.sh && \
     pip install tensorflow==2.4.0 tensorflow-gpu==2.4.0
 
 WORKDIR /root/projects/gym-donkeycar
-RUN pip install -e .[gym-donkeycar]
+RUN . /opt/conda/etc/profile.d/conda.sh && \
+    conda activate donkey && \
+    pip install -e .[gym-donkeycar]
 
 COPY ./Team_ahoy_racer  /root/Team_ahoy_racer
 RUN echo "conda activate donkey" >> ~/.bashrc
