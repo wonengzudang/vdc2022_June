@@ -1,7 +1,7 @@
-# Virtual Donkey Racing2021_November
+# Virtual Donkey Racing2022_June
 
 # Repository Introduction
-This repository includes Donkey v4.2 driving data, trained models, and Donkey configuration data for participation in the Virtual DonkeyCar Race racing in November 2021.  
+This repository includes Donkey v4.2 driving data, trained models, and Donkey configuration data for participation in the Virtual DonkeyCar Race racing in June 2022.  
 This repository refers to [hogenimushi/vdc2020_race03](https://github.com/hogenimushi/vdc2020_race03).
 
 ## Preparation
