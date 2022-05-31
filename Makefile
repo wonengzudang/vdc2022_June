@@ -20,7 +20,6 @@ TRM_ALL = $(TRM_EXAMPLE)
 
 #Mask
 MSK_EXAMPLE = data/Example_data.mask_done
-
 MSK_ALL = $(MSK_EXAMPLE)
 
 #Call Data
@@ -42,7 +41,7 @@ arrange:
 
 install_sim:
 	@echo "Install DonkeySim v22.05.30" && \
-	wget -qO- https://github.com/tawnkramer/gym-donkeycar/releases/download/v22.03.24/DonkeySimLinux.zip | bsdtar -xvf - -C . && \
+	wget -qO- https://github.com/tawnkramer/gym-donkeycar/releases/download/v22.05.30/DonkeySimLinux.zip | bsdtar -xvf - -C . && \
 	chmod +x DonkeySimLinux/donkey_sim.x86_64
 
 record: record10
@@ -62,17 +61,9 @@ test_train: models/test.h5
 models/test.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
-
-
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
-
-# connecting race server 10Hz
-
-
-# connecting race server 50Hz
-
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
