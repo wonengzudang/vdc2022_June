@@ -1,5 +1,6 @@
 
 #
+
 # This file referred from the "hogenimushi/vdc2020_race03" repository
 #
 ## Definition Area #############################################################################################
@@ -14,6 +15,7 @@ TRIM_MASK = data/Example_data.trim_mask_done
 TRIM_MASK_ALL = $(TRIM_MASK)
 
 #Trim
+
 TRM_EXAMPLE = data/Example_data.trim_done
 TRM_DATA1 = data/data1.trim_done
 TRM_ALL = $(TRM_EXAMPLE)
@@ -41,15 +43,16 @@ arrange:
 	find data -type d -empty | sed 's/\/images/ /g' | xargs rm -rf 
 
 install_sim:
-	@echo "Install DonkeySim v22.03.24" && \
-	wget -qO- https://github.com/tawnkramer/gym-donkeycar/releases/download/v22.03.24/DonkeySimLinux.zip | bsdtar -xvf - -C . && \
+	@echo "Install DonkeySim v22.05.30" && \
+	wget -qO- https://github.com/tawnkramer/gym-donkeycar/releases/download/v22.05.30/DonkeySimLinux.zip | bsdtar -xvf - -C . && \
 	chmod +x DonkeySimLinux/donkey_sim.x86_64
 
 record: record10
 
 record10:
 	$(PYTHON) manage.py drive --js --myconfig=cfgs/myconfig_10Hz.py
-
+record_kusa:
+	$(PYTHON) manage.py drive --js --myconfig=cfgs/kusa_myconfig_10Hz.py
 trim: $(TRM_ALL)
 trim_data1: $(TRM_DATA1)
 mask: $(MSK_ALL)
@@ -57,17 +60,20 @@ trim_mask: $(TRIM_MASK_ALL)
 
 test_train: models/test.h5
 	make models/test.h5
+kusa_train: models/kusa_linear.h5
 # Create Model
 # DATAには整形(trim, mask)したデータを入れる。整形しないデータを使う場合はSAVE_DATAから呼び出す。
 models/test.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
-
+models/kusa_linear.h5: $(SAVE_DATA)$(DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/kusa_myconfig_10Hz.py
 
 
 # Autonomous Driving using .h5 File
 test_run:
-	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
-
+	$(PYTHON) manage.py drive --model=models/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+kusa_linear_run:
+	$(PYTHON) manage.py drive --model=save_model/kusa_linear.h5 --type=linear --myconfig=cfgs/kusa_myconfig_60Hz.py
 # connecting race server 10Hz
 kusa_stable3_remote:
 	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable3.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
