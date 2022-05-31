@@ -41,7 +41,7 @@ arrange:
 	find data -type d -empty | sed 's/\/images/ /g' | xargs rm -rf 
 
 install_sim:
-	@echo "Install DonkeySim v22.03.24" && \
+	@echo "Install DonkeySim v22.05.30" && \
 	wget -qO- https://github.com/tawnkramer/gym-donkeycar/releases/download/v22.03.24/DonkeySimLinux.zip | bsdtar -xvf - -C . && \
 	chmod +x DonkeySimLinux/donkey_sim.x86_64
 
@@ -69,42 +69,9 @@ test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
 # connecting race server 10Hz
-kusa_stable3_remote:
-	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable3.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
 
-kusa_stable4_remote:
-	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable4.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
-
-kusa_stable5_remote:
-	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable5.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
-
-sgy1_remote:
-	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
-
-sgy2_remote:
-	$(PYTHON) manage.py drive --model=save_model/sgy_model2.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
-
-sgy3_remote:
-	$(PYTHON) manage.py drive --model=save_model/sgy_model3.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
 
 # connecting race server 50Hz
-kusa_stable3_remote50:
-	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable3.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
-
-kusa_stable4_remote50:
-	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable4.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
-
-kusa_stable5_remote50:
-	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable5.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
-
-sgy1_remote50:
-	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
-
-sgy2_remote50:
-	$(PYTHON) manage.py drive --model=save_model/sgy_model2.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
-
-sgy3_remote50:
-	$(PYTHON) manage.py drive --model=save_model/sgy_model3.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
 
 
 ###############################################################################
