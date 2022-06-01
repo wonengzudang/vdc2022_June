@@ -51,8 +51,10 @@ record: record10
 
 record10:
 	$(PYTHON) manage.py drive --js --myconfig=cfgs/myconfig_10Hz.py
-record_kusa:
+record_kusa_10Hz:
 	$(PYTHON) manage.py drive --js --myconfig=cfgs/kusa_myconfig_10Hz.py
+record_kusa_30Hz:
+	$(PYTHON) manage.py drive --js --myconfig=cfgs/kusa_myconfig_30Hz.py
 trim: $(TRM_ALL)
 trim_data1: $(TRM_DATA1)
 mask: $(MSK_ALL)
@@ -66,7 +68,7 @@ kusa_train: models/kusa_linear.h5
 models/test.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 models/kusa_linear.h5: $(SAVE_DATA)$(DATA)
-	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/kusa_myconfig_10Hz.py
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/kusa_myconfig_30Hz.py
 
 
 # Autonomous Driving using .h5 File
