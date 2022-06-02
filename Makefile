@@ -74,7 +74,7 @@ SIM_HOST_NAME=donkey-sim.roboticist.dev
 
 .PHONY: docker_build
 docker_build:
-	./scripts/docker.sh -s ${SIM_HOST_NAME} -p ${PATH_MODEL} -t ${TYPE_MODEL} -c ${PATH_CONFIG} -b
+	./scripts/docker.sh -s ${SIM_HOST_NAME} -b
 
 .PHONY: docker_run
 docker_run:
