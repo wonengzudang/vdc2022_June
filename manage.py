@@ -33,6 +33,8 @@ from donkeycar.utils import *
 logger = logging.getLogger()
 logging.basicConfig(level=logging.INFO)
 
+os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
+
 
 def drive(cfg, model_path=None, use_joystick=False, model_type=None,
           camera_type='single', meta=[]):
@@ -49,7 +51,10 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None,
     if cfg.DONKEY_GYM:
         #the simulator will use cuda and then we usually run out of resources
         #if we also try to use cuda. so disable for donkey_gym.
-        os.environ["CUDA_VISIBLE_DEVICES"]="-1"
+
+        #fix to use CUDA
+        #os.environ["CUDA_VISIBLE_DEVICES"]="-1"
+        pass
 
     if model_type is None:
         if cfg.TRAIN_LOCALIZER:
