@@ -2,7 +2,7 @@ version: '3'
 
 services:
   agent1:
-    container_name: yourname_ahoy
+    container_name: container_name
     build:
       context: .
       dockerfile: agent.Dockerfile
@@ -10,4 +10,4 @@ services:
     tty: true        # docker run -t
     ports:
       - "8887:8887"
-    image: yourname/race2022_June:0.1
+    image: container_name/vdc2022_june:June0.1
