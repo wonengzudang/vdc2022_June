@@ -17,7 +17,7 @@ IMAGE_H = 120
 IMAGE_DEPTH = 3         # default RGB=3, make 1 for mono
 
 #VEHICLE
-DRIVE_LOOP_HZ = 10
+DRIVE_LOOP_HZ = 30
 
 #JOYSTICK
 USE_JOYSTICK_AS_DEFAULT = True
