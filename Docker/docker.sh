@@ -59,7 +59,7 @@ if [ "$FLG_B" = "TRUE" ]; then
     echo building docker image...
     # pass different value to CACHE_DATE for disable docker cache from "ARG CACHE_ARG" line or later
     docker build . \
-        -t $BASE_CONTAINER_NAME_$USER_NAME:$CONTAINER_TAG \
+        -t ${BASE_CONTAINER_NAME}_${USER_NAME}:${CONTAINER_TAG} \
         -f ./Docker/Dockerfile \
         --build-arg CACHE_DATE=$(date +%Y-%m-%d-%H:%M:%S) \
         --build-arg SIM_HOST_NAME=$SIM_HOST_NAME \

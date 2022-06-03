@@ -76,11 +76,11 @@ CAR_NAME=hoge_car
 
 .PHONY: docker_build
 docker_build:
-	./scripts/docker.sh -s ${SIM_HOST_NAME} -n ${CAR_NAME} -b
+	./Docker/docker.sh -s ${SIM_HOST_NAME} -n ${CAR_NAME} -b
 
 .PHONY: docker_run
 docker_run:
-	./scripts/docker.sh -p ${PATH_MODEL} -t ${TYPE_MODEL} -c ${PATH_CONFIG} -r
+	./Docker/docker.sh -p ${PATH_MODEL} -t ${TYPE_MODEL} -c ${PATH_CONFIG} -r
 
 ######################################################################################################################
 
