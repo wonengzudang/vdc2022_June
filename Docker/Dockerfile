@@ -28,9 +28,17 @@ RUN python3 -m pip install -e .[pc] && \
 
 RUN pip install git+https://github.com/tawnkramer/gym-donkeycar
 
-COPY ./Team_ahoy_racer  /root/Team_ahoy_racer
-WORKDIR /root/Team_ahoy_racer
-
 # remove after install tensorflow
 RUN python3 -m pip uninstall -y protobuf
 RUN python3 -m pip install python-igraph==0.8.2 protobuf==3.20.1
+
+# copy files to container everytime when building
+# pass different value to CACHE_DATE for disable docker cache from "ARG CACHE_ARG" line or later
+ARG CACHE_DATE=2022-06-02
+WORKDIR /root/Team_ahoy_racer
+RUN mkdir /root/Team_ahoy_racer/models && mkdir /root/Team_ahoy_racer/data
+COPY ./Makefile /root/Team_ahoy_racer/
+COPY ./config.py /root/Team_ahoy_racer/
+COPY ./manage.py /root/Team_ahoy_racer/
+COPY ./save_model/ /root/Team_ahoy_racer/save_model
+COPY ./cfgs/ /root/Team_ahoy_racer/cfgs
