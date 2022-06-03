@@ -1,1 +1,1 @@
-ssh -i "~/.ssh/<Enter Your Private Key>" -T dockerusr@donkey-sim.roboticist.dev -p 22222 -- -c start_container -t 0.1 -r "'make test_run'"
+ssh -i "~/.ssh/hirohaku_donkeysim_race" -T dockerusr@donkey-sim.roboticist.dev -p 22222 -- -c start_container -t june0.1 -r "'bash && python manage.py drive --model=save_model/sgy_model2.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py '"
