@@ -8,6 +8,7 @@ TYPE_MODEL=linear
 PATH_CONFIG=./cfgs/race_10Hz_linear.py
 SIM_HOST_NAME=donkey-sim.roboticist.dev
 RACER_NAME=$USER
+CAR_NAME=hoge_car
 
 CMDNAME=`basename $0`
 
@@ -18,7 +19,7 @@ do
         "t") FLG_T="TRUE"; V_TYPE_MODEL="$OPTARG" ;;
         "p") FLG_P="TRUE"; V_PATH_MODEL="$OPTARG" ;;
         "c") FLG_C="TRUE"; V_PATH_CONFIG="$OPTARG" ;;
-        "n") FLG_N="TRUE"; V_RACER_NAME="$OPTARG" ;;
+        "n") FLG_N="TRUE"; V_CAR_NAME="$OPTARG" ;;
         "r") FLG_R="TRUE";;
         "b") FLG_B="TRUE";;
         *) echo "Usage: $CMDNAME
@@ -26,7 +27,7 @@ do
             [-t type_name, default: linear]
             [-p model_path, default: ./save_model/test.h5]
             [-c config_path, default: ./cfgs/race_10Hz_linear.py]
-            [-n racer_name, default: <$RACER_NAME>]
+            [-n car_name, default: <$CAR_NAME>]
             "
             exit 1;;
     esac
@@ -49,11 +50,12 @@ if [ "$FLG_C" = "TRUE" ]; then
 fi
 
 if [ "$FLG_N" = "TRUE" ]; then
-    RACER_NAME=$V_RACER_NAME
+    CAR_NAME=$V_CAR_NAME
 fi
 
 if [ "$FLG_B" = "TRUE" ]; then
     echo "set SIM_HOST_NAME=$SIM_HOST_NAME"
+    echo "set CAR_NAME=$CAR_NAME"
     echo building docker image...
     # pass different value to CACHE_DATE for disable docker cache from "ARG CACHE_ARG" line or later
     docker build . \
@@ -61,7 +63,8 @@ if [ "$FLG_B" = "TRUE" ]; then
         -f ./Docker/Dockerfile \
         --build-arg CACHE_DATE=$(date +%Y-%m-%d-%H:%M:%S) \
         --build-arg SIM_HOST_NAME=$SIM_HOST_NAME \
-        --build-arg RACER_NAME=$RACER_NAME
+        --build-arg RACER_NAME=$RACER_NAME \
+        --build-arg CAR_NAME=$CAR_NAME
 fi
 
 if [ "$FLG_R" = "TRUE" ]; then
@@ -69,7 +72,11 @@ if [ "$FLG_R" = "TRUE" ]; then
     echo "set PATH_CONFIG=$PATH_CONFIG"
     echo "set TYPE_MODEL=$TYPE_MODEL"
     echo running docker image...
-    #docker run -it --rm --gpus all ${BASE_CONTAINER_NAME}_${USER_NAME}:${CONTAINER_TAG} \
-    #python3 manage.py drive --model=${PATH_MODEL} --type=${TYPE_MODEL} --myconfig=${PATH_CONFIG}.bk
-    docker run -it --rm --gpus all $BASE_CONTAINER_NAME_$USER_NAME:$CONTAINER_TAG bash
+
+    docker run -it --rm --gpus all \
+    ${BASE_CONTAINER_NAME}_${USER_NAME}:${CONTAINER_TAG} \
+    python3 manage.py drive --model=${PATH_MODEL} --type=${TYPE_MODEL} --myconfig=${PATH_CONFIG}
+
+    ## for debug
+    #docker run -it --rm --gpus all $BASE_CONTAINER_NAME_$USER_NAME:$CONTAINER_TAG bash
 fi
