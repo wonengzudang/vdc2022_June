@@ -32,10 +32,10 @@ DONKEY_SIM_PATH = "./DonkeySimLinux/donkey_sim.x86_64"
 SIM_HOST = "localhost"
 
 DONKEY_GYM_ENV_NAME = "donkey-avc-sparkfun-v0"
-GYM_CONF = { "body_style" : "donkey", "body_rgb" : (230, 0, 50), "car_name" : "Ahoy!", "font_size" : 18} # body style(donkey|bare|car01) body rgb 0-255
+GYM_CONF = { "body_style" : "donkey", "body_rgb" : (230, 0, 50), "car_name" : "jp_beef", "font_size" : 18} # body style(donkey|bare|car01) body rgb 0-255
 
 
-GYM_CONF["racer_name"] = "hirohaku"
+GYM_CONF["racer_name"] = "huang"
 GYM_CONF["country"] = "JP"
 GYM_CONF["bio"] = "HELLO"
 
