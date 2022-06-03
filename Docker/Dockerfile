@@ -51,5 +51,5 @@ COPY ./cfgs/ /root/Team_ahoy_racer/cfgs
 RUN ls /root/Team_ahoy_racer/cfgs | xargs -I{} sed -i\
     -e "s/^SIM_HOST = .*/SIM_HOST = \"${SIM_HOST_NAME}\"/g"\
     -e "s/^DONKEY_SIM_PATH = .*/DONKEY_SIM_PATH = \"remote\"/g" \
-    -e "s/\"car_name\" : \".*\"/\"car_name\" : \"${CAR_NAME}\"/g" \
+    -e "s/\"car_name\" : \".*,\"/\"car_name\" : \"${CAR_NAME}\",/g" \
     /root/Team_ahoy_racer/cfgs/{}
