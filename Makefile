@@ -71,6 +71,7 @@ PATH_MODEL=./save_model/test.h5
 TYPE_MODEL=linear
 PATH_CONFIG=./cfgs/race_10Hz_linear.py
 SIM_HOST_NAME=donkey-sim.roboticist.dev
+RACER_NAME=$$USER
 
 .PHONY: docker_build
 docker_build:
