@@ -22,7 +22,6 @@ TRM_ALL = $(TRM_EXAMPLE)
 
 #Mask
 MSK_EXAMPLE = data/Example_data.mask_done
-
 MSK_ALL = $(MSK_EXAMPLE)
 
 #Call Data
@@ -114,6 +113,10 @@ sgy2_remote50:
 sgy3_remote50:
 	$(PYTHON) manage.py drive --model=save_model/sgy_model3.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
 
+
+# Autonomous Driving using .h5 File
+test_run:
+	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
