@@ -56,9 +56,14 @@ trim_mask: $(TRIM_MASK_ALL)
 
 test_train: models/test.h5
 	make models/test.h5
+hwp_train: models/huang_stable.h5
+	make models/huang_stable.h5
+
 # Create Model
 # DATAには整形(trim, mask)したデータを入れる。整形しないデータを使う場合はSAVE_DATAから呼び出す。
 models/test.h5: $(SAVE_DATA)$(DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
+models/huang_stable.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
 # Autonomous Driving using .h5 File
