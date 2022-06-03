@@ -11,5 +11,5 @@ build_image:
 
 .PHONY: run_car
 run_car:
-	docker run -it --rm --gpus all ${BASE_CONTAINER_NAME}_${USER_NAME}:${CONTAINER_TAG} \
+	docker run -it --rm  ${BASE_CONTAINER_NAME}_${USER_NAME}:${CONTAINER_TAG} \
 	python3 manage.py drive --model=${PATH_MODEL} --type=${TYPE_MODEL} --myconfig=${PATH_CONFIG}
