@@ -54,6 +54,13 @@ record_kusa_10Hz:
 	$(PYTHON) manage.py drive --js --myconfig=cfgs/kusa_myconfig_10Hz.py
 record_kusa_30Hz:
 	$(PYTHON) manage.py drive --js --myconfig=cfgs/kusa_myconfig_30Hz.py
+record_oym_10:
+	$(PYTHON) manage.py drive --js --myconfig=cfgs/oyama_myconfig_10Hz.py
+record_oym_30:
+	$(PYTHON) manage.py drive --js --myconfig=cfgs/oyama_myconfig_30Hz.py
+record_oym_60:
+	$(PYTHON) manage.py drive --js --myconfig=cfgs/oyama_myconfig_60Hz.py
+
 trim: $(TRM_ALL)
 trim_data1: $(TRM_DATA1)
 mask: $(MSK_ALL)
@@ -62,6 +69,10 @@ trim_mask: $(TRIM_MASK_ALL)
 test_train: models/test.h5
 	make models/test.h5
 kusa_train: models/kusa_linear.h5
+	
+oym_train_30: models/oym_linear_30.h5
+	make models/oym_linear_30.h5
+	
 # Create Model
 # DATAには整形(trim, mask)したデータを入れる。整形しないデータを使う場合はSAVE_DATAから呼び出す。
 models/test.h5: $(SAVE_DATA)$(DATA)
@@ -70,6 +81,8 @@ models/test.h5: $(SAVE_DATA)$(DATA)
 models/kusa_linear.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/kusa_myconfig_30Hz.py
 
+models/oym_linear_30.h5: $(SAVE_DATA)$(DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/oyama_myconfig_30Hz.py
 
 # Autonomous Driving using .h5 File
 test_run:
@@ -118,6 +131,9 @@ sgy3_remote50:
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+oym_run:
+	$(PYTHON) manage.py drive --model=save_model/oym_linear_30.h5 --type=linear --myconfig=cfgs/oyama_myconfig_60Hz.py
+
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
 PATH_MODEL=./save_model/test.h5
