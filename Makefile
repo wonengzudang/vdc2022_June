@@ -66,6 +66,10 @@ kusa_train: models/kusa_linear.h5
 # DATAには整形(trim, mask)したデータを入れる。整形しないデータを使う場合はSAVE_DATAから呼び出す。
 models/test.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
+<<<<<<< HEAD
+=======
+
+>>>>>>> a1b596f7ec2985c62198f7bb74f55abd7d18e5c0
 models/kusa_linear.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/kusa_myconfig_30Hz.py
 
@@ -117,7 +121,10 @@ sgy3_remote50:
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+<<<<<<< HEAD
 
+=======
+>>>>>>> a1b596f7ec2985c62198f7bb74f55abd7d18e5c0
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
 docker:
