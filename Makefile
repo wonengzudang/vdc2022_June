@@ -66,7 +66,7 @@ models/test.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
 models/sgy.h5: $(SAVE_DATA)$(DATA)
-	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/sgy_config_10Hz.py
 
 # Autonomous Driving using .h5 File
 test_run:
@@ -74,13 +74,15 @@ test_run:
 
 sgy_test_run:
 	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/sgy_config_10Hz.py
- 
+
+sgy_test_run2:
+	$(PYTHON) manage.py drive --model=save_model/sgy_model2.h5 --type=linear --myconfig=cfgs/sgy_config_10Hz.py
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
 docker:
 	cp -r cfgs/ Docker/Team_ahoy_racer/ && \
-	cp -r save_model/ Docker/Team_ahoy_racer/save_model/ && \
+	cp -r save_model/ Docker/Team_ahoy_racer/ && \
 	cp config.py Docker/Team_ahoy_racer/config.py && \
 	cp manage.py Docker/Team_ahoy_racer/manage.py && \
 	cp Makefile Docker/Team_ahoy_racer/Makefile && \
