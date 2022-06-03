@@ -68,6 +68,9 @@ test_run:
 sgy_test_run:
 	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
+hosoya_test_run:
+	$(PYTHON) manage.py drive --model=save_model/hosoya_drum2.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
 docker:
