@@ -66,29 +66,49 @@ models/test.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
 models/sgy.h5: $(SAVE_DATA)$(DATA)
-	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/sgy_config_10Hz.py
 
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
 sgy_test_run:
+<<<<<<< HEAD
 	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
 sgy_test_run2:
 	$(PYTHON) manage.py drive --model=save_model/sgy_model2.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
  
+=======
+	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/sgy_config_10Hz.py
+
+sgy_test_run2:
+	$(PYTHON) manage.py drive --model=save_model/sgy_model2.h5 --type=linear --myconfig=cfgs/sgy_config_10Hz.py
+>>>>>>> 88535f4347c928e93c7920360d92245be91660f1
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
 docker:
 	cp -r cfgs/ Docker/Team_ahoy_racer/ && \
-	cp -r save_model/ Docker/Team_ahoy_racer/save_model/ && \
+	cp -r save_model/ Docker/Team_ahoy_racer/ && \
 	cp config.py Docker/Team_ahoy_racer/config.py && \
 	cp manage.py Docker/Team_ahoy_racer/manage.py && \
 	cp Makefile Docker/Team_ahoy_racer/Makefile && \
 	mkdir Docker/Team_ahoy_racer/models && \
 	mkdir Docker/Team_ahoy_racer/data
+
+PATH_MODEL=./save_model/test.h5
+TYPE_MODEL=linear
+PATH_CONFIG=./cfgs/race_10Hz_linear.py
+SIM_HOST_NAME=donkey-sim.roboticist.dev
+
+.PHONY: docker_build
+docker_build:
+	./scripts/docker.sh -s ${SIM_HOST_NAME} -b
+
+.PHONY: docker_run
+docker_run:
+	./scripts/docker.sh -p ${PATH_MODEL} -t ${TYPE_MODEL} -c ${PATH_CONFIG} -r
 
 ######################################################################################################################
 
