@@ -72,7 +72,7 @@ kusa_train: models/kusa_linear.h5
 	
 oym_train_30: models/oym_linear_30.h5
 	make models/oym_linear_30.h5
-	
+kuro_train: save_model/kuro_linear.h5
 # Create Model
 # DATAには整形(trim, mask)したデータを入れる。整形しないデータを使う場合はSAVE_DATAから呼び出す。
 models/test.h5: $(SAVE_DATA)$(DATA)
@@ -83,12 +83,20 @@ models/kusa_linear.h5: $(SAVE_DATA)$(DATA)
 
 models/oym_linear_30.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/oyama_myconfig_30Hz.py
-
+save_model/kuro_linear.h5: $(SAVE_DATA)$(DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/oyama_myconfig_30Hz.py
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=models/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 kusa_linear_run:
 	$(PYTHON) manage.py drive --model=save_model/kusa_linear.h5 --type=linear --myconfig=cfgs/kusa_myconfig_60Hz.py
+kuro_run:
+	$(PYTHON) manage.py drive --model=save_model/kuro_linear.h5 --type=linear --myconfig=cfgs/kusa_myconfig_60Hz.py
+oym_run:
+	$(PYTHON) manage.py drive --model=save_model/oym_linear_30.h5 --type=linear --myconfig=cfgs/oyama_myconfig_60Hz.py
+
+
+
 # connecting race server 10Hz
 kusa_stable3_remote:
 	$(PYTHON) manage.py drive --model=save_model/kusa_linear_stable3.h5 --type=linear --myconfig=cfgs/race_10Hz_linear.py
@@ -128,11 +136,6 @@ sgy3_remote50:
 	$(PYTHON) manage.py drive --model=save_model/sgy_model3.h5 --type=linear --myconfig=cfgs/race_50Hz_linear.py
 
 
-# Autonomous Driving using .h5 File
-test_run:
-	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
-oym_run:
-	$(PYTHON) manage.py drive --model=save_model/oym_linear_30.h5 --type=linear --myconfig=cfgs/oyama_myconfig_60Hz.py
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
