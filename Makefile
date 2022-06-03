@@ -80,7 +80,6 @@ sgy_test_run2:
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
-<<<<<<< HEAD
 docker:
 	cp -r cfgs/ Docker/Team_ahoy_racer/ && \
 	cp -r save_model/ Docker/Team_ahoy_racer/ && \
@@ -89,7 +88,7 @@ docker:
 	cp Makefile Docker/Team_ahoy_racer/Makefile && \
 	mkdir Docker/Team_ahoy_racer/models && \
 	mkdir Docker/Team_ahoy_racer/data
-=======
+
 PATH_MODEL=./save_model/test.h5
 TYPE_MODEL=linear
 PATH_CONFIG=./cfgs/race_10Hz_linear.py
@@ -102,7 +101,6 @@ docker_build:
 .PHONY: docker_run
 docker_run:
 	./scripts/docker.sh -p ${PATH_MODEL} -t ${TYPE_MODEL} -c ${PATH_CONFIG} -r
->>>>>>> origin/master
 
 ######################################################################################################################
 
