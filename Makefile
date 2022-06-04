@@ -66,7 +66,7 @@ models/Linear_all_data.h5: $(SAVE_DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/hirohaku_race_50Hz_linear.py
 
 models/RNN_all_data.h5: $(SAVE_DATA)
-	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --config=cfgs/hirohaku_race_50Hz_linear.py
+	donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --config=cfgs/hirohaku_race_50Hz_rnn.py 
 
 # Autonomous Driving using .h5 File
 test_run:
