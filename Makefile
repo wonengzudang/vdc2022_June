@@ -1,5 +1,6 @@
 
 #
+
 # This file referred from the "hogenimushi/vdc2020_race03" repository
 #
 ## Definition Area #############################################################################################
@@ -14,6 +15,7 @@ TRIM_MASK = data/Example_data.trim_mask_done
 TRIM_MASK_ALL = $(TRIM_MASK)
 
 #Trim
+
 TRM_EXAMPLE = data/Example_data.trim_done
 TRM_DATA1 = data/data1.trim_done
 TRM_ALL = $(TRM_EXAMPLE)
@@ -48,6 +50,16 @@ record: record10
 
 record10:
 	$(PYTHON) manage.py drive --js --myconfig=cfgs/myconfig_10Hz.py
+record_kusa_10Hz:
+	$(PYTHON) manage.py drive --js --myconfig=cfgs/kusa_myconfig_10Hz.py
+record_kusa_30Hz:
+	$(PYTHON) manage.py drive --js --myconfig=cfgs/kusa_myconfig_30Hz.py
+record_oym_10:
+	$(PYTHON) manage.py drive --js --myconfig=cfgs/oyama_myconfig_10Hz.py
+record_oym_30:
+	$(PYTHON) manage.py drive --js --myconfig=cfgs/oyama_myconfig_30Hz.py
+record_oym_60:
+	$(PYTHON) manage.py drive --js --myconfig=cfgs/oyama_myconfig_60Hz.py
 
 trim: $(TRM_ALL)
 trim_data1: $(TRM_DATA1)
@@ -70,6 +82,13 @@ models/huang_stable.h5: $(SAVE_DATA)$(DATA)
 models/sgy.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
+models/kusa_linear.h5: $(SAVE_DATA)$(DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/kusa_myconfig_30Hz.py
+
+models/oym_linear_30.h5: $(SAVE_DATA)$(DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/oyama_myconfig_30Hz.py
+save_model/kuro_linear.h5: $(SAVE_DATA)$(DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/kusa_myconfig_30Hz.py
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
@@ -86,7 +105,7 @@ sgy_test_run:
 # Input files to Docker Team_ahoy_racer directory####################################################################
 PATH_MODEL=./models/$(shell date +%Y-%m-%d-%H:%M:%S).h5
 TYPE_MODEL=linear
-PATH_CONFIG=./cfgs/race_10Hz_linear.py
+PATH_CONFIG=./cfgs/race_50Hz_linear.py
 SIM_HOST_NAME=donkey-sim.roboticist.dev
 RACER_NAME=$$USER
 CAR_NAME=hoge_car
