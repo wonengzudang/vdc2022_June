@@ -64,7 +64,7 @@ models/test.h5: $(SAVE_DATA)$(DATA)
 
 # Autonomous Driving using .h5 File
 test_run:
-	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/myconfig_50Hz.py
 
 sugaya_test_run:
 	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/race_sgy_50Hz.py

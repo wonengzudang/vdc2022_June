@@ -63,5 +63,5 @@ LEARNING_RATE_DECAY = 0.0  #only used when OPTIMIZER specified
 CACHE_IMAGES = False       #keep images in memory. will speed succesive epochs, but crater if not enough mem.
 
 #RECORD OPTIONS
-RECORD_DURING_AI = False
+RECORD_DURING_AI = True
 AUTO_CREATE_NEW_TUB = True
