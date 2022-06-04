@@ -68,12 +68,11 @@ models/Linear_all_data.h5: $(SAVE_DATA)
 models/RNN_all_data.h5: $(SAVE_DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --config=cfgs/hirohaku_race_50Hz_linear.py
 
-models/Linear_all_data.h5: $(SAVE_DATA)
-	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/hirohaku_race_50Hz_linear.py
-
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+
+
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
