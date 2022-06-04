@@ -72,6 +72,11 @@ models/RNN_all_data.h5: $(SAVE_DATA)
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
+Teamhirohaku_Yaminabe_Linear:
+	$(PYTHON) manage.py drive --model=save_model/yutashx_yaminabe_2022_06_04.h5 --type=linear --myconfig=cfgs/hirohaku_race_50Hz_linear.py
+
+Teamhirohaku_Linear_all_data:
+	 $(PYTHON) manage.py drive --model=save_model/Linear_all_data.h5 --type=linear --myconfig=cfgs/hirohaku_race_50Hz_linear.py
 
 
 ###############################################################################
