@@ -1,9 +1,9 @@
 USER_NAME = $${USER}
 BASE_CONTAINER_NAME = donkeycar
 CONTAINER_TAG = Jun2022
-PATH_MODEL = save_model/test.h5
+PATH_MODEL = save_model/sgy_model.h5
 TYPE_MODEL = linear
-PATH_CONFIG = cfgs/race_10Hz_linear.py
+PATH_CONFIG = cfgs/race_sgy_50Hz_linear.py
 
 .PHONY: build_image
 build_image:

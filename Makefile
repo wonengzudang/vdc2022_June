@@ -66,6 +66,12 @@ models/test.h5: $(SAVE_DATA)$(DATA)
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
+sugaya_test_run:
+	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/race_sgy_50Hz.py
+
+hosoya_test_run:
+	$(PYTHON) manage.py drive --model=save_model/hosoya_model.h5 --type=linear --myconfig=cfgs/race_sgy_50Hz.py
+
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
 docker:
@@ -79,7 +85,7 @@ docker:
 
 PATH_MODEL=./save_model/sgy_model.h5
 TYPE_MODEL=linear
-PATH_CONFIG=./cfgs/sgy_config_10Hz.py
+PATH_CONFIG=./cfgs/race_sgy_50Hz.linear.py
 SIM_HOST_NAME=donkey-sim.roboticist.dev
 
 .PHONY: docker_build
