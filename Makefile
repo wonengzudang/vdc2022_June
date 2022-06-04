@@ -69,6 +69,10 @@ models/huang_stable.h5: $(SAVE_DATA)$(DATA)
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+test2_run:
+	$(PYTHON) manage.py drive --model=save_model/test2.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+
+
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
