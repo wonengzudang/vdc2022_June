@@ -72,20 +72,6 @@ models/sgy.h5: $(SAVE_DATA)$(DATA)
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
-sgy_test_run:
-<<<<<<< HEAD
-	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
-
-sgy_test_run2:
-	$(PYTHON) manage.py drive --model=save_model/sgy_model2.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
- 
-=======
-	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/sgy_config_10Hz.py
-
-sgy_test_run2:
-	$(PYTHON) manage.py drive --model=save_model/sgy_model2.h5 --type=linear --myconfig=cfgs/sgy_config_10Hz.py
->>>>>>> 88535f4347c928e93c7920360d92245be91660f1
-
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
 docker:
@@ -97,9 +83,9 @@ docker:
 	mkdir Docker/Team_ahoy_racer/models && \
 	mkdir Docker/Team_ahoy_racer/data
 
-PATH_MODEL=./save_model/test.h5
+PATH_MODEL=./save_model/sgy_model.h5
 TYPE_MODEL=linear
-PATH_CONFIG=./cfgs/race_10Hz_linear.py
+PATH_CONFIG=./cfgs/sgy_config_10Hz.py
 SIM_HOST_NAME=donkey-sim.roboticist.dev
 
 .PHONY: docker_build
