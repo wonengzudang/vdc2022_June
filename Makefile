@@ -75,9 +75,11 @@ test_run:
 Teamhirohaku_Yaminabe_Linear:
 	$(PYTHON) manage.py drive --model=save_model/yutashx_yaminabe_2022_06_04.h5 --type=linear --myconfig=cfgs/hirohaku_race_50Hz_linear.py
 
-Teamhirohaku_Linear_all_data:
-	 $(PYTHON) manage.py drive --model=save_model/Linear_all_data.h5 --type=linear --myconfig=cfgs/hirohaku_race_50Hz_linear.py
+Teamhirohaku_Linear_all_data1:
+	$(PYTHON) manage.py drive --model=save_model/Linear_all_data1.h5 --type=linear --myconfig=cfgs/hirohaku_race_30Hz_linear.py
 
+Teamhirohaku_Linear_all_data2:
+	$(PYTHON) manage.py drive --model=save_model/Linear_all_data2.h5 --type=linear --myconfig=cfgs/hirohaku_race_50Hz_linear.py
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
@@ -86,7 +88,7 @@ TYPE_MODEL=linear
 PATH_CONFIG=./cfgs/race_50Hz_linear.py
 SIM_HOST_NAME=donkey-sim.roboticist.dev
 RACER_NAME=$$USER
-CAR_NAME=hoge_car
+CAR_NAME=hirohaku
 
 .PHONY: docker_build
 docker_build:
