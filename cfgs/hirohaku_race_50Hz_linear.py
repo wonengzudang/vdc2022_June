@@ -32,9 +32,9 @@ DONKEY_SIM_PATH = "remote"
 SIM_HOST = "donkey-sim.roboticist.dev"
 
 DONKEY_GYM_ENV_NAME = "donkey-avc-sparkfun-v0" 
-GYM_CONF = { "body_style" : "donkey", "body_rgb" : (117, 0, 176), "car_name" : "kusa", "font_size" : 18}
+GYM_CONF = { "body_style" : "donkey", "body_rgb" : (255, 255, 63), "car_name" : "hirohaku", "font_size" : 18}
 
-GYM_CONF["racer_name"] = "kuro"
+GYM_CONF["racer_name"] = "hiorhaku"
 GYM_CONF["country"] = "JP"
 GYM_CONF["bio"] = "HELLO"
 
@@ -52,7 +52,7 @@ MAX_EPOCHS = 150           #how many times to visit all records of your data
 SHOW_PLOT = True           #would you like to see a pop up display of final loss?
 VERBOSE_TRAIN = True       #would you like to see a progress bar with text during training?
 USE_EARLY_STOP = True      #would you like to stop the training if we see it's not improving fit?
-EARLY_STOP_PATIENCE = 20   #how many epochs to wait before no improvement
+EARLY_STOP_PATIENCE = 40   #how many epochs to wait before no improvement
 MIN_DELTA = .0005          #early stop will want this much loss change before calling it improved.
 PRINT_MODEL_SUMMARY = True #print layers and weights to stdout
 OPTIMIZER = None           #adam, sgd, rmsprop, etc.. None accepts default

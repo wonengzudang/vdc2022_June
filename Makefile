@@ -1,6 +1,4 @@
-
 #
-
 # This file referred from the "hogenimushi/vdc2020_race03" repository
 #
 ## Definition Area #############################################################################################
@@ -50,16 +48,6 @@ record: record10
 
 record10:
 	$(PYTHON) manage.py drive --js --myconfig=cfgs/myconfig_10Hz.py
-record_kusa_10Hz:
-	$(PYTHON) manage.py drive --js --myconfig=cfgs/kusa_myconfig_10Hz.py
-record_kusa_30Hz:
-	$(PYTHON) manage.py drive --js --myconfig=cfgs/kusa_myconfig_30Hz.py
-record_oym_10:
-	$(PYTHON) manage.py drive --js --myconfig=cfgs/oyama_myconfig_10Hz.py
-record_oym_30:
-	$(PYTHON) manage.py drive --js --myconfig=cfgs/oyama_myconfig_30Hz.py
-record_oym_60:
-	$(PYTHON) manage.py drive --js --myconfig=cfgs/oyama_myconfig_60Hz.py
 
 trim: $(TRM_ALL)
 trim_data1: $(TRM_DATA1)
@@ -73,22 +61,19 @@ test_train: models/test.h5
 # DATAには整形(trim, mask)したデータを入れる。整形しないデータを使う場合はSAVE_DATAから呼び出す。
 models/test.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
-models/huang_stable.h5: $(SAVE_DATA)$(DATA)
-	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
+
+models/Linear_all_data.h5: $(SAVE_DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/hirohaku_race_50Hz_linear.py
+
+models/RNN_all_data.h5: $(SAVE_DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --config=cfgs/hirohaku_race_50Hz_linear.py
+
+models/Linear_all_data.h5: $(SAVE_DATA)
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/hirohaku_race_50Hz_linear.py
 
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
-test2_run:
-	$(PYTHON) manage.py drive --model=save_model/test2.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
-
-
-
-sugaya_test_run:
-	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/race_sgy_50Hz.py
-
-hosoya_test_run:
-	$(PYTHON) manage.py drive --model=save_model/hosoya_model.h5 --type=linear --myconfig=cfgs/race_sgy_50Hz.py
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
@@ -133,7 +118,5 @@ data/%.trim_done: save_data/%.trim
 .PHONY: .mask_done #maskのみ行う。上のDefinition Areaで.mask_doneをつけると下の関数が呼ばれる。
 data/%.mask_done: save_data/%
 	$(PYTHON) scripts/image_mask.py --input=$< --output=$@
-	
-
 
 #####################################################################################################################
