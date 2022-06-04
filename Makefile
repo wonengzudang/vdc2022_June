@@ -84,14 +84,14 @@ models/kusa_linear.h5: $(SAVE_DATA)$(DATA)
 models/oym_linear_30.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/oyama_myconfig_30Hz.py
 save_model/kuro_linear.h5: $(SAVE_DATA)$(DATA)
-	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/oyama_myconfig_30Hz.py
+	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/kusa_myconfig_30Hz.py
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=models/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 kusa_linear_run:
 	$(PYTHON) manage.py drive --model=save_model/kusa_linear.h5 --type=linear --myconfig=cfgs/kusa_myconfig_60Hz.py
 kuro_run:
-	$(PYTHON) manage.py drive --model=save_model/kuro_linear.h5 --type=linear --myconfig=cfgs/kusa_myconfig_60Hz.py
+	$(PYTHON) manage.py drive --model=save_model/kusa_linear.h5 --type=linear --myconfig=cfgs/kusa_myconfig_60Hz.py
 oym_run:
 	$(PYTHON) manage.py drive --model=save_model/oym_linear_30.h5 --type=linear --myconfig=cfgs/oyama_myconfig_60Hz.py
 
@@ -139,9 +139,9 @@ sgy3_remote50:
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
-PATH_MODEL=./save_model/test.h5
+PATH_MODEL=./save_model/kusa_linear.h5
 TYPE_MODEL=linear
-PATH_CONFIG=./cfgs/race_10Hz_linear.py
+PATH_CONFIG=./cfgs/race_50Hz_linear.py
 SIM_HOST_NAME=donkey-sim.roboticist.dev
 
 .PHONY: docker_build
