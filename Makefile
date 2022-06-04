@@ -78,18 +78,27 @@ sgy_test_run:
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
-PATH_MODEL=./save_model/test.h5
+PATH_MODEL=./models/$(shell date +%Y-%m-%d-%H:%M:%S).h5
 TYPE_MODEL=linear
 PATH_CONFIG=./cfgs/race_10Hz_linear.py
 SIM_HOST_NAME=donkey-sim.roboticist.dev
+RACER_NAME=$$USER
+CAR_NAME=hoge_car
 
 .PHONY: docker_build
 docker_build:
-	./scripts/docker.sh -s ${SIM_HOST_NAME} -b
+	mkdir -p log
+	./Docker/docker.sh -s ${SIM_HOST_NAME} -n ${CAR_NAME} -b | tee ./log/$(shell date +%Y-%m-%d-%H:%M:%S).build.log
 
 .PHONY: docker_run
 docker_run:
-	./scripts/docker.sh -p ${PATH_MODEL} -t ${TYPE_MODEL} -c ${PATH_CONFIG} -r
+	mkdir -p log
+	./Docker/docker.sh -p ${PATH_MODEL} -t ${TYPE_MODEL} -c ${PATH_CONFIG} -r | tee ./log/$(shell date +%Y-%m-%d-%H:%M:%S).run.log
+
+.PHONY: docker_train
+docker_train:
+	mkdir -p log
+	./Docker/docker.sh -p ${PATH_MODEL} -t ${TYPE_MODEL} -c ${PATH_CONFIG} -m | tee ./log/$(shell date +%Y-%m-%d-%H:%M:%S).train.log
 
 ######################################################################################################################
 

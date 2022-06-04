@@ -35,6 +35,10 @@ RUN python3 -m pip install python-igraph==0.8.2 protobuf==3.20.1
 # copy files to container everytime when building
 # pass different value to CACHE_DATE for disable docker cache from "ARG CACHE_ARG" line or later
 ARG CACHE_DATE=2022-06-02
+ARG SIM_HOST_NAME=donkey-sim.roboticist.dev
+ARG RACER_NAME=hoge
+ARG CAR_NAME=hoge_car
+
 WORKDIR /root/Team_ahoy_racer
 RUN mkdir /root/Team_ahoy_racer/models && mkdir /root/Team_ahoy_racer/data
 COPY ./Makefile /root/Team_ahoy_racer/
@@ -42,3 +46,10 @@ COPY ./config.py /root/Team_ahoy_racer/
 COPY ./manage.py /root/Team_ahoy_racer/
 COPY ./save_model/ /root/Team_ahoy_racer/save_model
 COPY ./cfgs/ /root/Team_ahoy_racer/cfgs
+
+# replace sim host name
+RUN ls /root/Team_ahoy_racer/cfgs | xargs -I{} sed -i\
+    -e "s/^SIM_HOST = .*/SIM_HOST = \"${SIM_HOST_NAME}\"/g"\
+    -e "s/^DONKEY_SIM_PATH = .*/DONKEY_SIM_PATH = \"remote\"/g" \
+    -e "s/\"car_name\" : \".*,\"/\"car_name\" : \"${CAR_NAME}\",/g" \
+    /root/Team_ahoy_racer/cfgs/{}
