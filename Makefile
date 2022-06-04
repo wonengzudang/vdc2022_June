@@ -69,9 +69,6 @@ trim_mask: $(TRIM_MASK_ALL)
 test_train: models/test.h5
 	make models/test.h5
 
-sgy_test_train: models/sgy.h5
-	make models/sgy.h5
-
 # Create Model
 # DATAには整形(trim, mask)したデータを入れる。整形しないデータを使う場合はSAVE_DATAから呼び出す。
 models/test.h5: $(SAVE_DATA)$(DATA)
@@ -79,16 +76,6 @@ models/test.h5: $(SAVE_DATA)$(DATA)
 models/huang_stable.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
 
-models/sgy.h5: $(SAVE_DATA)$(DATA)
-	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/myconfig_10Hz.py
-
-models/kusa_linear.h5: $(SAVE_DATA)$(DATA)
-	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/kusa_myconfig_30Hz.py
-
-models/oym_linear_30.h5: $(SAVE_DATA)$(DATA)
-	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/oyama_myconfig_30Hz.py
-save_model/kuro_linear.h5: $(SAVE_DATA)$(DATA)
-	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/kusa_myconfig_30Hz.py
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
@@ -97,9 +84,11 @@ test2_run:
 
 
 
-sgy_test_run:
-	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/sgy_config_10Hz.py
- 
+sugaya_test_run:
+	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/race_sgy_50Hz.py
+
+hosoya_test_run:
+	$(PYTHON) manage.py drive --model=save_model/hosoya_model.h5 --type=linear --myconfig=cfgs/race_sgy_50Hz.py
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
