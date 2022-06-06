@@ -53,7 +53,7 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None,
         #if we also try to use cuda. so disable for donkey_gym.
 
         #fix to use CUDA
-        #os.environ["CUDA_VISIBLE_DEVICES"]="-1"
+        os.environ["CUDA_VISIBLE_DEVICES"]="-1"
         pass
 
     if model_type is None:

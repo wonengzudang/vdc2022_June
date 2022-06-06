@@ -1,5 +1,5 @@
 # Docker Directory Description
-This directory is an example of what our team used for the Virtual Donkey Car Race in November 2021.  
+This directory is an example of what our team used for the Virtual Donkey Car Race in June 2022.  
 The following describes how we used it.  
 Using a Docker container on a server close to the race server allows race participants to interact with the race server over a low-latency network connection.  
 This method was established by [@Heavy02011](https://github.com/Heavy02011), [@altexdim](https://github.com/altexdim) and other DonkeyCar organizers. Thank you!  
@@ -18,14 +18,14 @@ The files that need to be copied are as follows.
 - `manage.py`  
 - `Makefile`: Use the *make* command to start automatic driving  
 
-##Step 2. Start image build.
+## Step 2. Start image build.
 ``` sh . /img_build.sh ```  
 to start Docker's Image build.  
 It will take 1.5 hours to build.
 
 ## Step 3. Check the built image.
 Check if the contents of Step 1 are included in the built image.  
-``` docker run --name "TEAM_ahoy_racer" -it yourname/race2021_nov:0.1 /bin/bash ```    
+``` docker run --name "TEAM_ahoy_racer" -it container_name/vdc2022_june:June0.1 /bin/bash ```    
 to start the container and check the items.
 
 ## Step 4. Upload the image to DockerHub
@@ -34,7 +34,7 @@ To use DockerHub, you need to register as a member.
 Please register at https://hub.docker.com/
 
 Upload the file to DockerHub.  
-``` docker tag yourname/race2021_nov:0.1 <NEED MODIFY!> DockerHub_UserName/RipositoryName:tagname  ```
+``` docker tag container_name/vdc2022_june:June0.1 <NEED MODIFY!> DockerHub_UserName/RipositoryName:tagname  ```
 
 ``` docker push <NEED MODIFY!> DockerHub_UserName/RipositoryName:tagname ```
 
@@ -52,7 +52,7 @@ to know how it works.
 
 
 # Dockerディレクトリの説明
-このディレクトリは私達のチームが2021年11月のVirtual Donkey Car Raceで使った一例です。  
+このディレクトリは私達のチームが2022年6月のVirtual Donkey Car Raceで使った一例です。  
 以下は私達が使った方法を説明します。  
 レースサーバに近いサーバにてDockerコンテナを利用することで、レース参加者は低遅延なネットワーク接続でレースサーバとやり取りできます。
 この方法は[@Heavy02011さん](https://github.com/Heavy02011) と[@altexdimさん](https://github.com/altexdim) を初め、DonkeyCarの主催者が確立しました。ありがとうございます!  
@@ -71,14 +71,14 @@ Team_ahoy_racerディレクトリはDockerImage作成時に必要なディレク
 - `manage.py`
 - `Makefile`: makeコマンドを使って自動運転を開始します
 
-##Step 2. イメージビルドを開始する
+## Step 2. イメージビルドを開始する
 ``` sh ./img_build.sh ```  
 を実行することで、DockerのImageビルドが始まります。  
 ビルドには1.5時間掛かります。
 
 ## Step 3. ビルドしたイメージをチェックする
 ビルドしたイメージ内にStep 1の内容物が入っているか確認します。  
-``` docker run --name "TEAM_ahoy_racer" -it  yourname/race2021_nov:0.1 /bin/bash ```  
+``` docker run --name "TEAM_ahoy_racer" -it container_name/vdc2022_june:June0.1 /bin/bash ```  
 でコンテナを起動し、内容物を確認します。
 
 ## Step 4. DockerHubにイメージをアップロード
@@ -88,7 +88,7 @@ https://hub.docker.com/
 で会員登録を行ってください。
 
 DockerHubへアップロードします。  
-``` docker tag yourname/race2021_nov:0.1 <NEED MODIFY!> DockerHub_UserName/RipositoryName:tagname ```  
+``` docker tag container_name/vdc2022_june:June0.1 <NEED MODIFY!> DockerHub_UserName/RipositoryName:tagname ```  
 
 ``` docker push <NEED MODIFY!> DockerHub_UserName/RipositoryName:tagname ```
 
@@ -106,7 +106,7 @@ DonkeyCar主催者へDockerコンテナ作成の依頼をしてください。
 
 
 # Docker目录说明
-此目录是我们团队用于 2021 年 11 月虚拟DonkeyCar比赛的示例。  
+此目录是我们团队用于 2022 年 6 月虚拟DonkeyCar比赛的示例。  
 下面介绍我们如何使用它。   
 在靠近比赛服务器的服务器上使用 Docker 容器允许比赛参与者通过低延迟网络与比赛服务器进行连接。   
 该方法由[@Heavy02011](https://github.com/Heavy02011)、[@altexdim](https://github.com/altexdim)等DonkeyCar组织者建立。 谢谢！   
@@ -134,7 +134,7 @@ Team_ahoy_racer 目录是创建 Docker Image 时需要的目录。
 
 ## Step 3. 检查构建的镜像
 检查步骤 1 的内容是否包含在构建的镜像中。  
-``` docker run --name "TEAM_ahoy_racer" -it yourname/race2021_nov:0.1 /bin/bash ```  
+``` docker run --name "TEAM_ahoy_racer" -it container_name/vdc2022_june:June0.1 /bin/bash ```  
 启动Docker容器并检查内容。  
 
 ## Step 4. 上传镜像到DockerHub
@@ -144,7 +144,7 @@ https://hub.docker.com/
 请注册成为会员。  
 
 上传到 DockerHub  
-``` docker tag yourname/race2021_nov:0.1 <NEED MODIFY!> DockerHub_UserName/RipositoryName:tagname ```  
+``` docker tag container_name/vdc2022_june:June0.1 <NEED MODIFY!> DockerHub_UserName/RipositoryName:tagname ```  
 ``` docker push <NEED MODIFY!> DockerHub_UserName/RipositoryName:tagname ```  
 
 ## Step 5. 创建 ssh 密钥 

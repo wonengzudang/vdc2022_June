@@ -17,7 +17,7 @@ IMAGE_H = 120
 IMAGE_DEPTH = 3         # default RGB=3, make 1 for mono
 
 #VEHICLE
-DRIVE_LOOP_HZ = 10
+DRIVE_LOOP_HZ = 30
 
 #JOYSTICK
 USE_JOYSTICK_AS_DEFAULT = True
@@ -25,6 +25,7 @@ CONTROLLER_TYPE ='F710'
 JOYSTICK_MAX_THROTTLE = 1.0
 JOYSTICK_STEERING_SCALE = 1.0
 MODEL_CATEGORICAL_MAX_THROTTLE_RANGE = JOYSTICK_MAX_THROTTLE
+JOYSTICK_DEVICE_FILE = '/dev/input/js0' #default is nothing
 
 #DonkeyGym
 DONKEY_GYM = True
@@ -32,10 +33,10 @@ DONKEY_SIM_PATH = "./DonkeySimLinux/donkey_sim.x86_64"
 SIM_HOST = "localhost"
 
 DONKEY_GYM_ENV_NAME = "donkey-avc-sparkfun-v0"
-GYM_CONF = { "body_style" : "donkey", "body_rgb" : (230, 0, 50), "car_name" : "Ahoy!", "font_size" : 18} # body style(donkey|bare|car01) body rgb 0-255
+GYM_CONF = { "body_style" : "donkey", "body_rgb" : (230, 0, 50), "car_name" : "jp_beef", "font_size" : 18} # body style(donkey|bare|car01) body rgb 0-255
 
 
-GYM_CONF["racer_name"] = "hirohaku"
+GYM_CONF["racer_name"] = "huang"
 GYM_CONF["country"] = "JP"
 GYM_CONF["bio"] = "HELLO"
 

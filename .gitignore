@@ -12,3 +12,4 @@ database.json
 Docker/Team_ahoy_racer/*
 tmp
 *.bk
+log/*
