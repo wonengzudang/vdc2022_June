@@ -1,1 +1,1 @@
-ssh -i "~/.ssh/hirohaku_donkeysim_race" -T dockerusr@donkey-sim.roboticist.dev -p 22222 -- -c start_container -t June0.4cpu -r "'make Teamhirohaku_Yaminabe_Linear'"
+ssh -i "~/.ssh/<specify your secret key>" -T dockerusr@donkey-sim.roboticist.dev -p 22222 -- -c start_container -t <Specify yout docker hub tag> -r "'make Teamhirohaku_Yaminabe_Linear'"
