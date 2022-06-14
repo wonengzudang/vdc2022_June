@@ -1,1 +1,1 @@
-ssh -T dockerusr@donkey-sim.roboticist.dev -p 22222 -- -c start_container -t 0.1 -r "'. /opt/conda/etc/profile.d/conda.sh ; conda activate donkey; make sgy2_remote'"
+ssh -i "~/.ssh/id_rsa" -T dockerusr@donkey-sim.roboticist.dev -p 22222 -- -c start_container -t 0.1 -r "'python3 manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py'"

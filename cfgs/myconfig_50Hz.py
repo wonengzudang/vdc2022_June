@@ -17,7 +17,7 @@ IMAGE_H = 120
 IMAGE_DEPTH = 3         # default RGB=3, make 1 for mono
 
 #VEHICLE
-DRIVE_LOOP_HZ = 50
+DRIVE_LOOP_HZ = 30
 
 #JOYSTICK
 USE_JOYSTICK_AS_DEFAULT = True
@@ -63,5 +63,5 @@ LEARNING_RATE_DECAY = 0.0  #only used when OPTIMIZER specified
 CACHE_IMAGES = False       #keep images in memory. will speed succesive epochs, but crater if not enough mem.
 
 #RECORD OPTIONS
-RECORD_DURING_AI = False
+RECORD_DURING_AI = True
 AUTO_CREATE_NEW_TUB = True

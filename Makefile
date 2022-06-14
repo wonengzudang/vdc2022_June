@@ -70,7 +70,9 @@ models/huang_stable.h5: $(SAVE_DATA)$(DATA)
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 test2_run:
-	$(PYTHON) manage.py drive --model=save_model/test2.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+	$(PYTHON) manage.py drive --model=save_model/test2.h5 --type=linear --myconfig=cfgs/myconfig_50Hz.py
+kuro_run:
+	$(PYTHON) manage.py drive --model=save_model/kusa_linear.h5 --type=linear --myconfig=cfgs/kusa_myconfig_60Hz.py
 
 
 
