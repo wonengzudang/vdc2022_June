@@ -6,6 +6,7 @@ Basic usage should feel familiar: train.py --tubs data/ --model models/mypilot.h
 Usage:
     train.py [--tubs=tubs] (--model=<model>)
     [--type=(linear|inferred|tensorrt_linear|tflite_linear)]
+    [check for availability --type=(test_efficient| categorical | inferred | memory | behavior | localizer | rnn | 3d)]
     [--comment=<comment>]
 
 Options:
