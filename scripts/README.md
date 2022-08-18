@@ -9,11 +9,12 @@
 **Algorithm** :  
 1. Check for the existence of manifest.json in Example_data
 2. Check if there is a ```Destination_DIR``` in ```data```. If not, it will be created automatically
-3. Integrate the contents of the ```.catalog``` file in ```Example_data```
-4. Integrate the contents of the ```.catalog_manifest``` file in ```Example_data``` and get the "Line_length" values from 10~20
-5. Cut out the values from 10 to 20 in the merged ```.catalog``` file and renumber them
-6. Cut out the images in the images directory and renumber them.
-7. Rewrite the inside of ```manifest.json``` and output it.
+3. Integrate the contents of the ```.catalog``` file in ```Example_data``` and assign to self
+4. Integrate the contents of the ```.catalog_manifest``` file in ```Example_data``` and get and assign to the "Line_length" values
+5. Cut out the values from 10 to 20 in the merged ```self.catalog``` and renumber them
+6. Create ```catalog and .catalog_manifest``` files and write them.
+7. Cut out the images in the images directory and renumber them.
+8. Rewrite the inside of ```manifest.json``` especially ```created_at, paths, and current_index``` and output it.
 
 ## multi_trim.py ##  
 **Purpose** : Reads and cuts the running data from the file containing the clipping points.  
@@ -39,11 +40,12 @@ _multi_trim.trim_ : Crop and save images from 10 to 20, 110 to 130, and 200 to 3
 **アルゴリズム** :  
 1. ```Example_data```内に```manifest.json```の存在を確認します。
 2. ```../dataにDestination_DIR```があるか確認します。ない場合は自動で作ります。
-3. ```Example_data```内の```.catalog```ファイルの内容を統合します。
-4. ```Example_data```内の```.catalog_manifest```ファイルの内容を統合し、10~20までの"Line_length"の値を取得します。
-5. 統合された```.catalog```ファイル内から10~20までの値を切り出しと番号を振りなおします。
-6. ```images```ディレクトリ内で画像を切り出し、番号を振りなおします。
-7. ```manifest.json```の中を書き換えて出力します。
+3. ```Example_data```内の```.catalog```ファイルの内容を統合し、selfにいれます。
+4. ```Example_data```内の```.catalog_manifest```ファイルの内容を統合し、"Line_length"の値を取得してselfにいれます。
+5. ```self.catalog```の中から指定された分を抽出して、番号を再度振り直しします。
+6. ```catalogと.catalog_manifest```を生成して書き込みます。
+7. ```images```ディレクトリ内で画像を切り出し、番号を振りなおします。
+8. ```manifest.json```の特に```created_atとpathsとcurrent_index```を書き換えて出力します。
 
 ## multi_trim.py
 **目的** : 走行データの切り抜き箇所が書かれたファイルから読み出して切り取ります。  

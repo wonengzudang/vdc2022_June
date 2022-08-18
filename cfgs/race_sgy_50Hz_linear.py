@@ -20,7 +20,7 @@ IMAGE_DEPTH = 3         # default RGB=3, make 1 for mono
 DRIVE_LOOP_HZ = 50
 
 #JOYSTICK
-USE_JOYSTICK_AS_DEFAULT = False
+USE_JOYSTICK_AS_DEFAULT = True
 CONTROLLER_TYPE ='F710'
 JOYSTICK_MAX_THROTTLE = 1.0
 JOYSTICK_STEERING_SCALE = 1.0
@@ -28,8 +28,12 @@ MODEL_CATEGORICAL_MAX_THROTTLE_RANGE = JOYSTICK_MAX_THROTTLE
 
 #DonkeyGym
 DONKEY_GYM = True
-DONKEY_SIM_PATH = "remote"
-SIM_HOST = "donkey-sim.roboticist.dev"
+DONKEY_SIM_PATH = "./DonkeySimLinux/donkey_sim.x86_64"
+SIM_HOST = "localhost"
+
+#DONKEY_GYM = True
+#DONKEY_SIM_PATH = "remote"
+#SIM_HOST = "donkey-sim.roboticist.dev"
 
 DONKEY_GYM_ENV_NAME = "donkey-avc-sparkfun-v0" 
 GYM_CONF = { "body_style" : "car01", "body_rgb" : (230, 0, 50), "car_name" : "sugasin", "font_size" : 18} # body style(donkey|bare|car01) body rgb 0-255
@@ -42,7 +46,7 @@ SIM_ARTIFICIAL_LATENCY = 0
 
 #WEB CONTROL
 WEB_CONTROL_PORT = 8887 
-WEB_INIT_MODE = "user"   # or user
+WEB_INIT_MODE = "local"   # or user
 
 #TRAINING
 DEFAULT_AI_FRAMEWORK = 'tensorflow'
@@ -59,6 +63,8 @@ OPTIMIZER = None           #adam, sgd, rmsprop, etc.. None accepts default
 LEARNING_RATE = 0.001      #only used when OPTIMIZER specified
 LEARNING_RATE_DECAY = 0.0  #only used when OPTIMIZER specified
 CACHE_IMAGES = False       #keep images in memory. will speed succesive epochs, but crater if not enough mem.
+CREATE_TF_LITE = False           # automatically create tflite model in training
+CREATE_TENSOR_RT = False
 
 #RECORD OPTIONS
 RECORD_DURING_AI = False

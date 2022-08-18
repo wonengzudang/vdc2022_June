@@ -1,4 +1,5 @@
 #/bin/bash
+set -x
 
 USER_NAME=$USER
 UID=`id -u`
@@ -65,17 +66,13 @@ if [ "$FLG_B" = "TRUE" ]; then
     echo building docker image...
     # pass different value to CACHE_DATE for disable docker cache from "ARG CACHE_ARG" line or later
     # define command
-    CMD="docker build . \
+    docker build . \
             -t ${BASE_CONTAINER_NAME}_${USER_NAME}:${CONTAINER_TAG} \
             -f ./Docker/Dockerfile \
             --build-arg CACHE_DATE=$(date +%Y-%m-%d-%H:%M:%S) \
             --build-arg SIM_HOST_NAME=$SIM_HOST_NAME \
             --build-arg RACER_NAME=$RACER_NAME \
-            --build-arg CAR_NAME=$CAR_NAME"
-
-    # run command
-    echo $CMD
-    bash -c "$CMD"
+            --build-arg CAR_NAME=$CAR_NAME
 fi
 
 if [ "$FLG_R" = "TRUE" ]; then
@@ -85,13 +82,9 @@ if [ "$FLG_R" = "TRUE" ]; then
     echo running docker image...
 
     # define command
-    CMD="docker run -it --rm --gpus all \
+    docker run -it --rm --gpus all \
             ${BASE_CONTAINER_NAME}_${USER_NAME}:${CONTAINER_TAG} \
-            python3 manage.py drive --model=${PATH_MODEL} --type=${TYPE_MODEL} --myconfig=${PATH_CONFIG}"
-
-    echo $CMD
-    # run command
-    bash -c "$CMD"
+            python3 manage.py drive --model=${PATH_MODEL} --type=${TYPE_MODEL} --myconfig=${PATH_CONFIG}
 
     ## for debug
     #docker run -it --rm --gpus all $BASE_CONTAINER_NAME_$USER_NAME:$CONTAINER_TAG bash
@@ -105,7 +98,7 @@ if [ "$FLG_M" = "TRUE" ]; then
     # file owener created in docker is root, so we should change file owener
     # We expect dataset and created model is located in ./data and ./models
     # define command
-    CMD="docker run -it --rm --gpus all \
+    docker run -it --rm --gpus all \
             -e TF_FORCE_GPU_ALLOW_GROWTH=true \
             -v `pwd`/data:/root/Team_ahoy_racer/data \
             -v `pwd`/models:/root/Team_ahoy_racer/models \
@@ -114,9 +107,5 @@ if [ "$FLG_M" = "TRUE" ]; then
                 --tub=$(find data/ -type d -name images | xargs -I{} dirname {} | sed -e "s/^/.\//g" | tr "\n" "," | sed -e "s/,$//g") \
                 --model=${PATH_MODEL} \
                 --type=${TYPE_MODEL} \
-                --config=${PATH_CONFIG}"
-
-    echo $CMD
-    # run command
-    bash -c "$CMD"
+                --config=${PATH_CONFIG}
 fi
