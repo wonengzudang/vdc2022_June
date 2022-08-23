@@ -75,4 +75,4 @@ NUM_LAST_LAYERS_TO_TRAIN = 7        #when freezing layers, how many layers from 
 
 #RECORD OPTIONS
 RECORD_DURING_AI = False
-AUTO_CREATE_NEW_TUB = False
+AUTO_CREATE_NEW_TUB = True
