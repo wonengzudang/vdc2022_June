@@ -25,7 +25,6 @@ MSK_ALL = $(MSK_EXAMPLE)
 #Call Data
 SAVE_DATA = $(shell find save_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 DATA = $(shell find data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
-K_DATA = $(shell find save_data/kuro -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 ##################################################################################################################
 
 ## Command Area ##################################################################################################
@@ -115,9 +114,6 @@ Teamhirohaku_Linear_all_data1:
 
 Teamhirohaku_Linear_all_data2:
 	$(PYTHON) manage.py drive --model=save_model/Linear_all_data2.h5 --type=linear --myconfig=cfgs/hirohaku_race_50Hz_linear.py
-
-hosoya_test_run:
-	$(PYTHON) manage.py drive --model=save_model/hosoya_drum2.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
