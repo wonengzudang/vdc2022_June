@@ -115,6 +115,9 @@ Teamhirohaku_Linear_all_data1:
 Teamhirohaku_Linear_all_data2:
 	$(PYTHON) manage.py drive --model=save_model/Linear_all_data2.h5 --type=linear --myconfig=cfgs/hirohaku_race_50Hz_linear.py
 
+hosoya_test_run:
+	$(PYTHON) manage.py drive --model=save_model/hosoya_drum2.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
+
 ###############################################################################
 # Input files to Docker Team_ahoy_racer directory####################################################################
 PATH_MODEL=./models/$(shell date +%Y-%m-%d-%H:%M:%S).h5
