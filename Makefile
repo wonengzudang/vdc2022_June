@@ -90,7 +90,6 @@ models/Linear_all_data.h5: $(SAVE_DATA)
 # Autonomous Driving using .h5 File
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
-
 kusa_linear_run:
 	$(PYTHON) manage.py drive --model=save_model/kusa_linear.h5 --type=linear --myconfig=cfgs/kusa_myconfig_60Hz.py
 kuro_run:
