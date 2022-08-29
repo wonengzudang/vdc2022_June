@@ -1,5 +1,0 @@
-["cam/image_array", "user/angle", "user/throttle", "user/mode"]
-["image_array", "float", "float", "str"]
-{}
-{"created_at": 1654235027.4280052, "sessions": {"all_full_ids": ["22-06-03_0"], "last_id": 0, "last_full_id": "22-06-03_0"}}
-{"paths": ["catalog_0.catalog", "catalog_1.catalog", "catalog_2.catalog", "catalog_3.catalog", "catalog_4.catalog", "catalog_5.catalog", "catalog_6.catalog", "catalog_7.catalog", "catalog_8.catalog", "catalog_9.catalog"], "current_index": 9542, "max_len": 1000, "deleted_indexes": []}
