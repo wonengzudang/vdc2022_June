@@ -22,9 +22,11 @@ TRM_ALL = $(TRM_EXAMPLE)
 MSK_EXAMPLE = data/Example_data.mask_done
 MSK_ALL = $(MSK_EXAMPLE)
 
+
 #Call Data
 SAVE_DATA = $(shell find save_data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 DATA = $(shell find data/ -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
+K_DATA = $(shell find save_data/kuro -type d | grep -v "images" | sed -e '1d' | tr '\n' ' ')
 ##################################################################################################################
 
 ## Command Area ##################################################################################################
@@ -56,7 +58,6 @@ trim_mask: $(TRIM_MASK_ALL)
 
 test_train: models/test.h5
 	make models/test.h5
-
 linear:
 	make models/hosoya_linear.h5
 
@@ -83,11 +84,15 @@ save_model/kuro_linear.h5: $(SAVE_DATA)$(DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/kusa_myconfig_30Hz.py
 save_model/kuro_linear2.h5: $(K_DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/kusa_myconfig_30Hz.py
+<<<<<<< HEAD
 
 models/Linear_all_data.h5: $(SAVE_DATA)
 	TF_FORCE_GPU_ALLOW_GROWTH=true donkey train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --config=cfgs/hirohaku_race_50Hz_linear.py
 
+=======
+>>>>>>> origin/kuro
 # Autonomous Driving using .h5 File
+#
 test_run:
 	$(PYTHON) manage.py drive --model=save_model/test.h5 --type=linear --myconfig=cfgs/myconfig_10Hz.py
 kusa_linear_run:
@@ -97,10 +102,14 @@ kuro_run:
 oym_run:
 	$(PYTHON) manage.py drive --model=save_model/oym_linear_30.h5 --type=linear --myconfig=cfgs/oyama_myconfig_60Hz.py
 kuro2_run:
+<<<<<<< HEAD
 	$(PYTHON) manage.py drive --model=save_model/kuro_linear2.h5 --type=linear --myconfig=cfgs/kusa_myconfig_60Hz.py
 
 ugaya_test_run:
 	$(PYTHON) manage.py drive --model=save_model/sgy_model.h5 --type=linear --myconfig=cfgs/race_sgy_50Hz.py
+=======
+	$(PYTHON) manage.py drive --model=save_model/kuro_linear2.h5 --type=linear --myconfig=cfgs/kusa_myconfig_60Hz.py	
+>>>>>>> origin/kuro
 
 hosoya_test_run:
 	$(PYTHON) manage.py drive --model=save_model/hosoya_model.h5 --type=linear --myconfig=cfgs/race_sgy_50Hz.py
